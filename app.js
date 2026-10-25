@@ -45,7 +45,7 @@
     $('progress-label').textContent = state.finished ? '100%' : `${Math.min(100, state.progress)}%`;
     $('progress-fill').style.width = `${state.finished ? 100 : Math.min(100, state.progress)}%`;
     $('timer').textContent = `${String(Math.floor(state.seconds / 60)).padStart(2, '0')}:${String(state.seconds % 60).padStart(2, '0')}`;
-    $('work-button').disabled = !active;
+    $('work-button').disabled = !connected || state.finished;
     $('work-button').innerHTML = !state.started ? '准备好了，开始做！ <span>✦</span>' : active ? '一起动手 <span>✦</span>' : '这顿饭完成啦 <span>✓</span>';
     $('chef-turn').textContent = !state.started ? '两个人都准备好后，由房主开始' : state.finished ? '完美配合！你们是黄金搭档。' : `本步骤需要两个人都动手 · 已完成 ${state.contributors.length}/2 人`;
     $('result').classList.toggle('hidden', !state.finished);
