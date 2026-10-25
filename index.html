@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f4ed">
+  <title>一起开饭 · 双人厨房</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="一起开饭首页"><span class="brand-mark">🥢</span><span>一起开饭</span></a>
+      <div class="top-note"><span class="live-dot"></span> 双人线上厨房</div>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">COOK TOGETHER, ANYWHERE</p>
+        <h1 id="page-title">今晚这顿，<em>一起做。</em></h1>
+        <p class="intro">开一个厨房房间，把房间码发给另一位主厨。你们的每一步都会实时同步。</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><span class="steam steam-one">〰</span><span class="steam steam-two">〰</span><span class="bowl">🥟</span><span class="sprinkle">✳</span></div>
+    </section>
+
+    <section class="room-card" id="room-card" aria-labelledby="room-title">
+      <div class="section-heading"><div><p class="eyebrow">YOUR KITCHEN</p><h2 id="room-title">先把搭档叫来</h2></div><span class="step-badge">01 / 03</span></div>
+      <div class="room-actions" id="room-actions">
+        <button class="button button-primary" id="create-room">创建厨房 <span>↗</span></button>
+        <div class="join-row"><label class="sr-only" for="room-code-input">输入房间码</label><input id="room-code-input" maxlength="8" autocomplete="off" placeholder="输入 6 位房间码"><button class="button button-secondary" id="join-room">加入</button></div>
+      </div>
+      <div class="room-status" id="room-status" role="status" aria-live="polite">两个人都准备好后，就可以开火啦。</div>
+      <div class="invite-panel hidden" id="invite-panel">
+        <div><span class="muted-label">把这个房间码发给搭档</span><div class="room-code" id="room-code">------</div></div>
+        <button class="button button-secondary copy-button" id="copy-code">复制房间码</button>
+      </div>
+      <div class="people-row" id="people-row">
+        <div class="person"><span class="avatar avatar-you">🧑🏻‍🍳</span><span><b>你</b><small id="you-state">等待开房</small></span><i class="person-dot"></i></div>
+        <div class="person"><span class="avatar avatar-partner">👩🏻‍🍳</span><span><b>搭档</b><small id="partner-state">还没加入</small></span><i class="person-dot offline" id="partner-dot"></i></div>
+      </div>
+    </section>
+
+    <section class="game-card hidden" id="game-card" aria-labelledby="game-title">
+      <div class="section-heading"><div><p class="eyebrow">TODAY'S SPECIAL</p><h2 id="game-title">做一份热腾腾的饺子</h2></div><div class="timer"><span>⏱</span><b id="timer">00:00</b></div></div>
+      <div class="game-stage" id="game-stage">
+        <div class="dish-illustration" id="dish-illustration">🥟</div>
+        <div class="stage-copy"><p class="stage-kicker" id="stage-kicker">准备食材</p><h3 id="stage-title">把馅料准备好</h3><p id="stage-description">两位主厨一起点击，合作进度会更快。</p></div>
+      </div>
+      <div class="progress-meta"><span>合作进度</span><b id="progress-label">0%</b></div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="chef-turn" id="chef-turn">搭档加入后即可开始</div>
+      <button class="button button-primary work-button" id="work-button" disabled>准备好了，开始做！ <span>✦</span></button>
+      <p class="room-footnote">每人轮流负责一个步骤；也可以互相帮忙加快进度。</p>
+      <div class="result hidden" id="result" role="status"><div class="result-emoji" id="result-emoji">🎉</div><h3 id="result-title">大功告成！</h3><p id="result-copy"></p><button class="button button-secondary" id="play-again">再做一份</button></div>
+    </section>
+
+    <footer><span>一人一双手，两个人一桌菜。</span><span>双人合作原型 · 浏览器版</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
